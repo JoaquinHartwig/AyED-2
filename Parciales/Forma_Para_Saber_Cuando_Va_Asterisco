@@ -518,3 +518,132 @@ insertarFinal	insertarFinal(LISTA,x)
 sacarElemento	sacarElemento(LISTA,&x)
 esVacia	esVacia(*LISTA)
 imprimir_lista	imprimir_lista(*LISTA)
+
+Sí. Para **los módulos que te toman en el parcial**, podés usar esa regla mental simplificada.
+
+Supongamos:
+
+```c
+void miModulo(tipoLista *LISTA)
+```
+
+Acá:
+
+```c
+LISTA
+```
+
+ya es un:
+
+```c
+tipoLista *
+```
+
+---
+
+Entonces:
+
+### Funciones que reciben `tipoLista *`
+
+```c
+crearLista(tipoLista *L);
+insertarFinal(tipoLista *L,x);
+insertarPrincipio(tipoLista *L,x);
+eliminarElem(tipoLista *L,x);
+sacarElemento(tipoLista *L,&x);
+```
+
+Las llamás así:
+
+```c
+crearLista(LISTA);
+insertarFinal(LISTA,x);
+eliminarElem(LISTA,x);
+sacarElemento(LISTA,&x);
+```
+
+👉 **Sin `*`**
+
+---
+
+### Funciones que reciben `tipoLista`
+
+```c
+esVacia(tipoLista L);
+imprimir_lista(tipoLista L);
+```
+
+Las llamás así:
+
+```c
+esVacia(*LISTA);
+imprimir_lista(*LISTA);
+```
+
+👉 **Con `*`**
+
+---
+
+Tu regla rápida para los módulos puede ser:
+
+```text
+Estoy dentro de:
+
+void modulo(tipoLista *LISTA)
+
+↓
+
+Si la función pide tipoLista*
+    uso LISTA
+
+Si la función pide tipoLista
+    uso *LISTA
+```
+
+Ejemplos:
+
+```c
+while(!esVacia(*LISTA))
+{
+    sacarElemento(LISTA,&x);
+
+    insertarFinal(LISTA2,x);
+}
+```
+
+Fijate cómo se cumple:
+
+* `esVacia` pide `tipoLista` → `*LISTA`
+* `sacarElemento` pide `tipoLista *` → `LISTA`
+
+---
+
+La razón profunda es que:
+
+```c
+LISTA
+```
+
+es el "control remoto" de la lista (puntero al puntero).
+
+Y:
+
+```c
+*LISTA
+```
+
+es la lista propiamente dicha (puntero al primer nodo).
+
+Pero para el parcial, tu regla simplificada funciona muy bien:
+
+```text
+Dentro de un módulo:
+
+¿La función pide tipoLista*?
+→ paso LISTA
+
+¿La función pide tipoLista?
+→ paso *LISTA
+```
+
+Y con eso vas a acertar casi siempre.
