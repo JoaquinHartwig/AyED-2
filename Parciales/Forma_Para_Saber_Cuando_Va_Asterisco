@@ -1,0 +1,520 @@
+Perfecto. Te voy a dar una **regla mecánica**, casi como un árbol de decisión. Cuando dudes, hacete estas preguntas en orden.
+
+---
+
+# Paso 1: ¿La función quiere modificar la lista?
+
+Si la respuesta es **sí**, la función recibe:
+
+```c
+tipoLista *L
+```
+
+porque necesita poder cambiar:
+
+```c
+*L
+```
+
+Ejemplos:
+
+```c
+crearLista(&Lista);
+insertarFinal(&Lista,10);
+insertarPrincipio(&Lista,10);
+sacarElemento(&Lista,&x);
+eliminarElem(&Lista,10);
+```
+
+Todas modifican la lista.
+
+---
+
+# Paso 2: ¿Qué tengo yo?
+
+Supongamos:
+
+```c
+tipoLista Lista;
+```
+
+Visualmente:
+
+```text
+Lista ---> NULL
+```
+
+`Lista` es un puntero.
+
+---
+
+Si la función pide:
+
+```c
+tipoLista *L
+```
+
+vos tenés que darle la dirección de tu puntero:
+
+```c
+&Lista
+```
+
+Por eso:
+
+```c
+insertarFinal(&Lista,10);
+```
+
+---
+
+# Regla práctica N°1
+
+Si declaraste:
+
+```c
+tipoLista Lista;
+```
+
+y la función recibe:
+
+```c
+tipoLista *L
+```
+
+entonces:
+
+```c
+&Lista
+```
+
+---
+
+# Ahora viene la parte que más te confunde
+
+Supongamos:
+
+```c
+void funcion(tipoLista *LISTA1)
+```
+
+Acá ya recibiste:
+
+```c
+LISTA1
+```
+
+que vale:
+
+```c
+tipoLista *
+```
+
+---
+
+Entonces preguntate:
+
+> ¿La función que voy a llamar pide `tipoLista *`?
+
+Si sí:
+
+```c
+insertarFinal(LISTA1,10);
+```
+
+NO:
+
+```c
+insertarFinal(&LISTA1,10);
+```
+
+porque estarías mandando:
+
+```c
+tipoLista **
+```
+
+---
+
+# Regla práctica N°2
+
+Si el parámetro ya es:
+
+```c
+tipoLista *LISTA
+```
+
+normalmente NO agregues `&`.
+
+---
+
+# ¿Cuándo aparece el * ?
+
+Hay dos usos distintos.
+
+---
+
+## Caso A
+
+```c
+*LISTA
+```
+
+significa:
+
+```text
+Dame la lista verdadera
+```
+
+Ejemplo:
+
+```c
+while(!esVacia(*LISTA))
+```
+
+---
+
+¿Por qué?
+
+Porque:
+
+```c
+esVacia(tipoLista L)
+```
+
+espera:
+
+```c
+tipoLista
+```
+
+y vos tenés:
+
+```c
+tipoLista *
+```
+
+Entonces:
+
+```c
+*LISTA
+```
+
+---
+
+# Regla práctica N°3
+
+Si una función pide:
+
+```c
+tipoLista
+```
+
+y vos tenés:
+
+```c
+tipoLista *LISTA
+```
+
+mandás:
+
+```c
+*LISTA
+```
+
+---
+
+Ejemplo:
+
+```c
+while(!esVacia(*LISTA))
+```
+
+---
+
+# Caso B
+
+Modificar la lista
+
+```c
+*LISTA = nuevoNodo;
+```
+
+Acá el significado es otro:
+
+```text
+Cambiar hacia dónde apunta la lista.
+```
+
+---
+
+# Tu parcial
+
+Tenías:
+
+```c
+void ListadeNumeros(tipoLista *LISTA,
+                    tipoLista *LISTA1,
+                    tipoLista *LISTA2)
+```
+
+Entonces:
+
+```text
+LISTA   es tipoLista*
+LISTA1  es tipoLista*
+LISTA2  es tipoLista*
+```
+
+---
+
+Preguntate:
+
+## crearLista
+
+Recibe:
+
+```c
+crearLista(tipoLista *L)
+```
+
+Necesita:
+
+```c
+tipoLista *
+```
+
+Vos tenés:
+
+```c
+LISTA1
+```
+
+que ya es:
+
+```c
+tipoLista *
+```
+
+Entonces:
+
+```c
+crearLista(LISTA1);
+```
+
+✅
+
+No:
+
+```c
+crearLista(&LISTA1);
+```
+
+❌
+
+---
+
+## esVacia
+
+Recibe:
+
+```c
+esVacia(tipoLista L)
+```
+
+Necesita:
+
+```c
+tipoLista
+```
+
+Vos tenés:
+
+```c
+LISTA
+```
+
+que es:
+
+```c
+tipoLista *
+```
+
+Entonces:
+
+```c
+esVacia(*LISTA)
+```
+
+✅
+
+---
+
+## insertarFinal
+
+Recibe:
+
+```c
+insertarFinal(tipoLista *L,int x)
+```
+
+Necesita:
+
+```c
+tipoLista *
+```
+
+Vos tenés:
+
+```c
+LISTA1
+```
+
+que ya es:
+
+```c
+tipoLista *
+```
+
+Entonces:
+
+```c
+insertarFinal(LISTA1,num);
+```
+
+✅
+
+No:
+
+```c
+insertarFinal(*LISTA1,num);
+```
+
+❌
+
+---
+
+# Chuleta rápida para el parcial
+
+Mirá la función.
+
+### Recibe `tipoLista`
+
+```c
+esVacia(L)
+imprimir_lista(L)
+```
+
+Si tenés:
+
+```c
+tipoLista *LISTA
+```
+
+mandás:
+
+```c
+*LISTA
+```
+
+---
+
+### Recibe `tipoLista *`
+
+```c
+crearLista(L)
+insertarFinal(L,x)
+insertarPrincipio(L,x)
+eliminarElem(L,x)
+sacarElemento(L,&x)
+```
+
+Si tenés:
+
+```c
+tipoLista Lista;
+```
+
+mandás:
+
+```c
+&Lista
+```
+
+---
+
+Si tenés:
+
+```c
+tipoLista *LISTA;
+```
+
+mandás:
+
+```c
+LISTA
+```
+
+---
+
+## Regla mental de 3 segundos
+
+Antes de escribir una llamada preguntate:
+
+**¿Qué pide la función?**
+
+```c
+tipoLista
+```
+
+o
+
+```c
+tipoLista *
+```
+
+Luego preguntate:
+
+**¿Qué tengo yo?**
+
+```c
+Lista
+```
+
+o
+
+```c
+*LISTA
+```
+
+o
+
+```c
+&Lista
+```
+
+Si hacés esas dos preguntas siempre, prácticamente desaparecen los errores de `*` y `&`.
+
+La chuleta que memorizaría para el parcial
+
+Si estoy afuera:
+
+tipoLista Lista;
+Función	Llamada
+crearLista	crearLista(&Lista)
+insertarFinal	insertarFinal(&Lista,x)
+sacarElemento	sacarElemento(&Lista,&x)
+esVacia	esVacia(Lista)
+imprimir_lista	imprimir_lista(Lista)
+
+
+
+Si estoy adentro de:
+
+void ejercicio(tipoLista *LISTA)
+Función	Llamada
+crearLista	crearLista(LISTA)
+insertarFinal	insertarFinal(LISTA,x)
+sacarElemento	sacarElemento(LISTA,&x)
+esVacia	esVacia(*LISTA)
+imprimir_lista	imprimir_lista(*LISTA)
