@@ -32,7 +32,7 @@ Si el préstamo es mayor o igual a 5000 se aplica descuento del 5%*/
 #include <stdbool.h>
 #include "TDA_LISTAS1.h"
 
-bool esPerfecto(int numero){
+bool esPerfecto(int numero){ // Para q compile el programa gcc main.c TDA_LISTAS1.c -o programa
 
     int sumaDivisores = 0;
 
@@ -202,4 +202,4 @@ int main(){
     imprimirLista(Opcion2);
 
     return 0;
-}
+} //gcc main.c TDA_LISTAS1.c -o programa
