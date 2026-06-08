@@ -7,6 +7,7 @@ Implementaciones en lenguaje C.
 ## Tecnologías
 - Lenguaje C
 - estructuras dinámicas y estáticas
+- Visual Studio Code
 
 ## Contenido
 
