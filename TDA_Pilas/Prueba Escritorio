@@ -1,0 +1,50 @@
+apilar(3)
+
+TOPE
+  |
+  v
+ [3]
+  |
+ NULL
+
+
+apilar(5)
+
+TOPE
+  |
+  v
+ [5]
+  |
+ [3]
+  |
+ NULL
+
+
+apilar(6)
+
+TOPE
+  |
+  v
+ [6]
+  |
+ [5]
+  |
+ [3]
+  |
+ NULL
+
+
+apilar(9)
+
+TOPE
+  |
+  v
+ [9]
+  |
+ [6]
+  |
+ [5]
+  |
+ [3]
+  |
+ NULL
