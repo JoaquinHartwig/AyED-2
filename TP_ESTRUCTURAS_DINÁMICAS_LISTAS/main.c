@@ -20,13 +20,13 @@ int main(){//En este programa se utiliza mucho la funcion imprimirLista para mos
     }   
 
     printf("\nInsertando al principio...\n"); // hago una lista q contenga 3 elementos, insertando al principio cada uno de ellos, el resultado es una lista con los elementos en orden inverso al que se insertaron, ya que cada nuevo elemento se convierte en el nuevo primer nodo de la lista
-    Insertar_Principio(&Lista, 10); //10,5,2
+    Insertar_Principio(&Lista, 10); //2,5,10
     Insertar_Principio(&Lista, 5);
     Insertar_Principio(&Lista, 2);
 
     imprimirLista(Lista); //La función imprimirLista recorre la lista desde el primer nodo hasta el último nodo, imprimiendo el valor de cada nodo seguido de " | ". En este caso, se imprimirá "2 | 5 | 10 | ", ya que el primer nodo contiene el valor 2, el segundo nodo contiene el valor 5 y el tercer nodo contiene el valor 10. Después de imprimir todos los nodos, se imprime un salto de línea para finalizar la salida.
 
-    printf("\nInsertando al final...\n");
+    printf("\nInsertando al final...\n");//recibe la lista (q ya esta cargada con los elementos 2,5,10) y el valor a insertar (20), la función Insertar_Final crea un nuevo nodo con el valor 20 y lo agrega al final de la lista. Luego se inserta el valor 30 al final de la lista, resultando en una lista con los elementos 2,5,10,20,30
     Insertar_Final(&Lista, 20);
     Insertar_Final(&Lista, 30);
 
