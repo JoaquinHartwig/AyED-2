@@ -52,7 +52,7 @@ void insertarFinal(tipoLista *L, int x) {
             *L = (*L)->sig;//Aqui se hace el recorrido
         }
         (*L)->sig = nuevoNodo;//Esto conecta el ultimo nodo con el nodo q queremos insertar al final
-        *L = PI;
+        *L = PI;//Vuelve la lista al comienzo,gracias al puntero auxiliar
     }
 
 }
