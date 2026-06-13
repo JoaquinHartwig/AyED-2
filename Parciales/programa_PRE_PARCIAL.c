@@ -16,7 +16,7 @@ int numActualizado=0;
 crearLista(ListaEspecial);
 while(!esVacia(*ListaOriginal))
 {
-numActualizado=0;//reinicia el contador    
+    
 sacarElemento(ListaOriginal,&num);
 insertarFinal(&Aux,num);
 if(num%2==0)
