@@ -18,7 +18,7 @@ Implementaciones en lenguaje C.
 
 ### Estructuras No Lineales
 - Árboles binarios
-- Árboles de búsqueda
+- Árboles 2-3
 
 ### TDA (Tipos de Datos Abstractos)
 - Implementación de TDA en C
