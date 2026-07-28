@@ -30,6 +30,9 @@ Implementaciones en lenguaje C.
 - Memoria dinámica (malloc, free)
 - Nodos y enlaces
 - Operaciones: insertar, eliminar, buscar
+  
+## Repositorio de teoria
+https://app.notion.com/p/AyED2-Mesa-te-rica-3aa133de1cd0809fa1cecb90c5a01984?source=copy_link
 
 ## Autor
 Estudiante: Joaquin Hartwig
